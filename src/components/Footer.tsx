@@ -15,20 +15,20 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <a href="#" className="text-white text-xl font-bold">
-              <span className="neon-glow-blue">DEV</span>
-              <span className="neon-glow-green">PORT</span>
+              <span className="neon-glow-blue">ABHINAND</span>
+              <span className="neon-glow-green">PN</span>
             </a>
             <p className="text-white/50 mt-2">Secure, Scalable & AI-Driven Solutions</p>
           </div>
           
           <div className="flex space-x-6 mb-6 md:mb-0">
-            <a href="#" className="text-white/70 hover:text-neon-blue transition-colors">
+            <a href="https://github.com/abhinandpn/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-neon-blue transition-colors">
               <Github className="w-5 h-5" />
             </a>
-            <a href="#" className="text-white/70 hover:text-neon-blue transition-colors">
+            <a href="https://x.com/abhinand_p_n" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-neon-blue transition-colors">
               <Twitter className="w-5 h-5" />
             </a>
-            <a href="#" className="text-white/70 hover:text-neon-blue transition-colors">
+            <a href="https://www.linkedin.com/in/abhinandpn/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-neon-blue transition-colors">
               <Linkedin className="w-5 h-5" />
             </a>
           </div>
@@ -43,7 +43,7 @@ const Footer = () => {
         
         <div className="border-t border-white/10 mt-10 pt-10 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/50 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Backend Developer Portfolio. All rights reserved.
+            &copy; {new Date().getFullYear()} Abhinand P N. All rights reserved.
           </p>
           
           <div className="flex space-x-6">
