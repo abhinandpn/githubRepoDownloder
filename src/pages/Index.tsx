@@ -26,7 +26,7 @@ const Index = () => {
       {/* Header */}
       <header className="relative z-10 flex justify-between items-center mb-16 md:mb-24">
         <a href="#" className="text-neutral-900 font-medium">
-          remin.in
+          abhinand.dev
         </a>
         
         <Button 
@@ -42,20 +42,21 @@ const Index = () => {
       <div className="relative z-10 max-w-3xl mx-auto w-full mt-12 md:mt-24">
         <div className="space-y-4">
           <div className="text-neutral-500 text-sm">
-            01 Title.md
+            01 About.md
           </div>
           <div className="text-neutral-500">
             Hi, I am
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-8">
-            Remin T Roy
+            Abhinand P N
           </h1>
           
           <div className="text-neutral-700 text-lg leading-relaxed space-y-4">
             <p>
-              A <span className="font-semibold">self-taught MERN</span> stack developer based in Palakkad, Kerala. Curious to learn more about developing 
-              scalable distributed systems. Loves <span className="font-semibold">problem-solving</span> and cares about writing <span className="font-semibold">readable and maintainable</span> 
-              code. Passionate about making web applications <span className="font-semibold">fast</span> and <span className="font-semibold">interactive</span>.
+              Motivated and experienced <span className="font-semibold">Golang developer</span> with 1 year of work experience. 
+              Possesses a deep understanding of <span className="font-semibold">Go, REST API, SQL and NoSQL databases</span>, 
+              gRPC, Docker, CICD, AWS, and more. Strong technical background in software development 
+              and passion for building <span className="font-semibold">scalable and robust applications</span>.
             </p>
           </div>
           
@@ -63,6 +64,7 @@ const Index = () => {
             <Button 
               variant="outline" 
               className="meta-glass meta-button text-neutral-600 border-neutral-200 gap-2"
+              onClick={() => window.open('https://github.com/abhinandpn', '_blank')}
             >
               <Github size={16} />
               Github
@@ -71,6 +73,7 @@ const Index = () => {
             <Button 
               variant="outline" 
               className="meta-glass meta-button text-neutral-600 border-neutral-200 gap-2"
+              onClick={() => window.open('https://www.linkedin.com/in/abhinandpn/', '_blank')}
             >
               <Linkedin size={16} />
               LinkedIn
@@ -79,6 +82,7 @@ const Index = () => {
             <Button 
               variant="outline" 
               className="meta-glass meta-button text-neutral-600 border-neutral-200 gap-2"
+              onClick={() => window.open('https://instagram.com/abhinand_p_n', '_blank')}
             >
               <Instagram size={16} />
               Instagram
@@ -98,3 +102,4 @@ const Index = () => {
 };
 
 export default Index;
+
