@@ -41,7 +41,7 @@ const ProcessSection = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            From Vision to Reality: Effortless Design at Your Fingertips ✨
+            From Vision to Reality: Effortless Design at Your Fingertips
           </h2>
           
           <p className="text-lg text-white/70 max-w-2xl mx-auto">
@@ -57,10 +57,10 @@ const ProcessSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: step.delay }}
               viewport={{ once: true }}
-              className={`glass-card p-8 text-center relative neon-border-${step.color} group hover:bg-${step.color}/5 transition-colors duration-300`}
+              className={`glass-card p-8 text-center relative group hover:bg-${step.color}/5 transition-colors duration-300`}
             >
               <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                <div className={`w-12 h-12 rounded-full bg-black flex items-center justify-center border-2 border-${step.color} group-hover:neon-border-${step.color} transition-all duration-300`}>
+                <div className={`w-12 h-12 rounded-full bg-black flex items-center justify-center border border-${step.color} group-hover:neon-border-${step.color} transition-all duration-300`}>
                   {step.icon}
                 </div>
               </div>

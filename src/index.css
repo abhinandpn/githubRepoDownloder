@@ -71,4 +71,46 @@
   .glass-card {
     @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg;
   }
+
+  .meta-button {
+    @apply relative overflow-hidden transition-all duration-300 hover:bg-white/10 hover:scale-105 active:scale-95;
+  }
+
+  .meta-button::after {
+    @apply content-[''] absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500 bg-gradient-to-r;
+  }
+
+  .meta-button:hover::after {
+    @apply opacity-30;
+  }
+
+  .meta-button-green::after {
+    @apply from-neon-green/40 to-transparent;
+  }
+
+  .meta-button-blue::after {
+    @apply from-neon-blue/40 to-transparent;
+  }
+
+  .meta-button-yellow::after {
+    @apply from-neon-yellow/40 to-transparent;
+  }
+
+  .gradient-text {
+    @apply animate-text bg-gradient-to-r from-neon-green via-neon-blue to-neon-yellow bg-clip-text text-transparent;
+  }
+}
+
+@keyframes text-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-text {
+  animation: text-gradient 6s linear infinite;
+  background-size: 200% auto;
 }

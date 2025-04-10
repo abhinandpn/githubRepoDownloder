@@ -11,7 +11,9 @@ const Footer = () => {
 
   return (
     <footer className="py-12 px-4 sm:px-6 relative overflow-hidden">
-      <div className="container mx-auto max-w-6xl">
+      <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-neon-blue/5 rounded-full filter blur-[120px]"></div>
+      
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <a href="#" className="text-white text-xl font-bold">
@@ -35,9 +37,9 @@ const Footer = () => {
           
           <button 
             onClick={scrollToTop}
-            className="p-3 bg-white/5 rounded-full border border-white/10 hover:neon-border-green transition-all"
+            className="p-3 glass-card meta-button meta-button-green rounded-full hover:scale-105 transition-all"
           >
-            <ArrowUp className="w-5 h-5 text-white/70 hover:text-neon-green transition-colors" />
+            <ArrowUp className="w-5 h-5 text-white/70" />
           </button>
         </div>
         

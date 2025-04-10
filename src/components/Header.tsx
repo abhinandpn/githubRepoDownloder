@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/80 backdrop-blur-md py-3" : "bg-transparent py-5"
+        isScrolled ? "bg-black/70 backdrop-blur-md py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
@@ -54,7 +54,7 @@ const Header = () => {
             FAQ
           </a>
           <Button 
-            className="bg-neon-green hover:bg-neon-green/90 text-black font-medium"
+            className="glass-card meta-button meta-button-green text-white"
             onClick={() => {
               const contactSection = document.getElementById('contact');
               contactSection?.scrollIntoView({ behavior: 'smooth' });
@@ -75,7 +75,7 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-md absolute top-full left-0 right-0 border-t border-white/10">
+        <div className="md:hidden bg-black/80 backdrop-blur-md absolute top-full left-0 right-0 border-t border-white/10">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <a 
               href="#expertise" 
@@ -113,7 +113,7 @@ const Header = () => {
               FAQ
             </a>
             <Button 
-              className="bg-neon-green hover:bg-neon-green/90 text-black font-medium w-full"
+              className="glass-card meta-button meta-button-green text-white w-full"
               onClick={() => {
                 setMobileMenuOpen(false);
                 const contactSection = document.getElementById('contact');

@@ -6,32 +6,31 @@ const HeroSection = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center pt-16 pb-20 px-4 sm:px-6 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute top-1/4 left-10 w-64 h-64 bg-neon-blue/20 rounded-full filter blur-[100px] opacity-60 animate-pulse-slow"></div>
-      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-neon-green/20 rounded-full filter blur-[100px] opacity-60 animate-pulse-slow"></div>
+      <div className="absolute top-1/4 left-10 w-64 h-64 bg-neon-blue/10 rounded-full filter blur-[100px] opacity-60 animate-pulse-slow"></div>
+      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-neon-green/10 rounded-full filter blur-[100px] opacity-60 animate-pulse-slow"></div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
               <span className="block">Passionate</span>
               <span className="block">Backend Developer</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-neon-blue to-neon-yellow animate-glow">
+              <span className="block gradient-text">
                 Secure, Scalable &
               </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-neon-yellow via-neon-blue to-neon-green animate-glow">
+              <span className="block gradient-text">
                 AI-Driven Solutions
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-lg md:text-xl text-white/70 mb-8 max-w-2xl mx-auto lg:mx-0">
               Expert in building high-performance backend systems using modern technologies.
               Specializing in microservices architecture, real-time data processing, and secure API development.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button 
-                size="lg" 
-                className="bg-neon-green hover:bg-neon-green/90 text-black font-medium px-8 py-6 rounded-md"
+                className="glass-card meta-button meta-button-green text-white px-8 py-6 text-base"
                 onClick={() => {
                   const contactSection = document.getElementById('contact');
                   contactSection?.scrollIntoView({ behavior: 'smooth' });
@@ -42,8 +41,7 @@ const HeroSection = () => {
               
               <Button 
                 variant="outline" 
-                size="lg" 
-                className="border-neon-blue text-neon-blue hover:bg-neon-blue/10 font-medium px-8 py-6 rounded-md"
+                className="glass-card meta-button meta-button-blue text-white px-8 py-6 text-base"
                 onClick={() => {
                   const workflowSection = document.getElementById('workflow');
                   workflowSection?.scrollIntoView({ behavior: 'smooth' });
@@ -55,7 +53,7 @@ const HeroSection = () => {
           </div>
           
           <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            <div className="row-span-2 glass-card p-4 flex items-center justify-center neon-border-green">
+            <div className="row-span-2 glass-card p-4 flex items-center justify-center animate-float">
               <div className="w-32 h-32 relative flex items-center justify-center">
                 <div className="absolute inset-0 bg-neon-green/20 rounded-full animate-pulse"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-16 h-16 neon-glow-green fill-neon-green">
@@ -63,7 +61,7 @@ const HeroSection = () => {
                 </svg>
               </div>
             </div>
-            <div className="glass-card p-4 flex items-center justify-center neon-border-blue">
+            <div className="glass-card p-4 flex items-center justify-center animate-float" style={{ animationDelay: "0.5s" }}>
               <div className="w-16 h-16 relative flex items-center justify-center">
                 <div className="absolute inset-0 bg-neon-blue/20 rounded-full animate-pulse"></div>
                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 neon-glow-blue fill-neon-blue">
@@ -71,7 +69,7 @@ const HeroSection = () => {
                 </svg>
               </div>
             </div>
-            <div className="glass-card p-4 flex items-center justify-center neon-border-yellow">
+            <div className="glass-card p-4 flex items-center justify-center animate-float" style={{ animationDelay: "1s" }}>
               <div className="w-16 h-16 relative flex items-center justify-center">
                 <div className="absolute inset-0 bg-neon-yellow/20 rounded-full animate-pulse"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-10 h-10 neon-glow-yellow fill-neon-yellow">
@@ -79,7 +77,7 @@ const HeroSection = () => {
                 </svg>
               </div>
             </div>
-            <div className="glass-card p-4 flex items-center justify-center neon-border-green">
+            <div className="glass-card p-4 flex items-center justify-center animate-float" style={{ animationDelay: "1.5s" }}>
               <div className="w-16 h-16 relative flex items-center justify-center">
                 <div className="absolute inset-0 bg-neon-green/20 rounded-full animate-pulse"></div>
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 neon-glow-green fill-neon-green">
