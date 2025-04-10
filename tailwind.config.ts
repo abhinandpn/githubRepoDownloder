@@ -52,11 +52,6 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
-				},
-				neon: {
-					green: '#0CFA00',
-					blue: '#00E5FF',
-					yellow: '#FAFF00'
 				}
 			},
 			borderRadius: {
@@ -77,32 +72,23 @@ export default {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.7' }
 				},
-				'glow': {
-					'0%, 100%': { 
-						textShadow: '0 0 5px rgba(0, 229, 255, 0.5), 0 0 10px rgba(0, 229, 255, 0.3)'
-					},
-					'50%': { 
-						textShadow: '0 0 10px rgba(0, 229, 255, 0.8), 0 0 20px rgba(0, 229, 255, 0.5), 0 0 30px rgba(0, 229, 255, 0.3)'
-					}
-				},
-				'button-pulse': {
-					'0%, 100%': { 
-						boxShadow: '0 0 5px rgba(12, 250, 0, 0.5)'
-					},
-					'50%': { 
-						boxShadow: '0 0 15px rgba(12, 250, 0, 0.8)'
-					}
-				},
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
+				},
+				'button-pulse': {
+					'0%, 100%': { 
+						boxShadow: '0 0 5px rgba(255, 255, 255, 0.3)'
+					},
+					'50%': { 
+						boxShadow: '0 0 15px rgba(255, 255, 255, 0.5)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite',
 				'button-pulse': 'button-pulse 2s infinite',
 				'float': 'float 4s ease-in-out infinite'
 			},

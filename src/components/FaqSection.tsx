@@ -42,10 +42,10 @@ const FaqSection = () => {
     <section id="faq" className="py-20 px-4 sm:px-6 relative overflow-hidden">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-medium mb-4">
             We've got the answers
           </h2>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">
+          <p className="text-base text-white/70 max-w-2xl mx-auto">
             Common questions about my backend development services
           </p>
         </div>
@@ -58,13 +58,13 @@ const FaqSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="glass-card"
+              className="meta-glass"
             >
               <button
                 className="flex justify-between items-center w-full text-left px-6 py-4"
                 onClick={() => toggleItem(index)}
               >
-                <span className="font-medium text-white text-lg">{item.question}</span>
+                <span className="font-medium text-white text-base">{item.question}</span>
                 <ChevronDown 
                   className={`w-5 h-5 text-white/70 transition-transform duration-200 ${
                     openItem === index ? "transform rotate-180" : ""
@@ -77,7 +77,7 @@ const FaqSection = () => {
                   openItem === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="px-6 pb-6 text-white/70">
+                <div className="px-6 pb-6 text-white/70 text-sm">
                   {item.answer}
                 </div>
               </div>

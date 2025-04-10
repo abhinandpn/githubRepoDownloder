@@ -24,7 +24,7 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -44,73 +44,53 @@
 }
 
 @layer utilities {
-  .neon-border-green {
-    @apply border border-neon-green/70 shadow-[0_0_10px_rgba(12,250,0,0.7)];
+  .meta-glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-lg;
   }
   
-  .neon-border-blue {
-    @apply border border-neon-blue/70 shadow-[0_0_10px_rgba(0,229,255,0.7)];
-  }
-  
-  .neon-border-yellow {
-    @apply border border-neon-yellow/70 shadow-[0_0_10px_rgba(250,255,0,0.7)];
-  }
-
-  .neon-glow-green {
-    @apply text-neon-green drop-shadow-[0_0_8px_rgba(12,250,0,0.7)];
-  }
-  
-  .neon-glow-blue {
-    @apply text-neon-blue drop-shadow-[0_0_8px_rgba(0,229,255,0.7)];
-  }
-  
-  .neon-glow-yellow {
-    @apply text-neon-yellow drop-shadow-[0_0_8px_rgba(250,255,0,0.7)];
-  }
-  
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg;
-  }
-
   .meta-button {
     @apply relative overflow-hidden transition-all duration-300 hover:bg-white/10 hover:scale-105 active:scale-95;
   }
 
   .meta-button::after {
-    @apply content-[''] absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500 bg-gradient-to-r;
+    @apply content-[''] absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500;
   }
 
   .meta-button:hover::after {
     @apply opacity-30;
   }
 
-  .meta-button-green::after {
-    @apply from-neon-green/40 to-transparent;
+  .meta-glow {
+    @apply drop-shadow-[0_0_15px_rgba(255,255,255,0.5)];
   }
 
-  .meta-button-blue::after {
-    @apply from-neon-blue/40 to-transparent;
+  .text-gradient {
+    @apply bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent;
   }
 
-  .meta-button-yellow::after {
-    @apply from-neon-yellow/40 to-transparent;
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
   }
 
-  .gradient-text {
-    @apply animate-text bg-gradient-to-r from-neon-green via-neon-blue to-neon-yellow bg-clip-text text-transparent;
+  .animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
   }
 }
 
-@keyframes text-gradient {
+@keyframes float {
   0%, 100% {
-    background-position: 0% 50%;
+    transform: translateY(0);
   }
   50% {
-    background-position: 100% 50%;
+    transform: translateY(-10px);
   }
 }
 
-.animate-text {
-  animation: text-gradient 6s linear infinite;
-  background-size: 200% auto;
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
