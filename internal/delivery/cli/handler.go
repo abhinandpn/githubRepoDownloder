@@ -11,6 +11,7 @@ import (
 
 	"github.com/abhinandpn/githubRepoDownloder/internal/domain"
 	"github.com/abhinandpn/githubRepoDownloder/internal/usecase"
+	"github.com/spf13/cobra"
 	"golang.org/x/term"
 )
 
@@ -23,24 +24,73 @@ func NewHandler(u *usecase.GitHubUsecase) *Handler {
 }
 
 func (h *Handler) Start() {
-	// Get the terminal's width using term.GetSize
-	width, _, err := term.GetSize(int(os.Stdout.Fd()))
-	if err != nil {
-		width = 80 // Fallback to 80 if getting terminal width fails
+	// Root command
+	var rootCmd = &cobra.Command{
+		Use:   "github-repo-downloader",
+		Short: "A CLI tool to download all or selected GitHub repositories.",
+		Long: `GitHub Repo Downloader is a tool that allows users to download 
+	all or selected repositories from GitHub by providing a username.`,
+		Run: func(cmd *cobra.Command, args []string) {
+			// Get terminal width
+			width, _, err := term.GetSize(int(os.Stdout.Fd()))
+			if err != nil {
+				width = 80 // Fallback to 80 if getting terminal width fails
+			}
+
+			// Display program info banner
+			// Heading in cyan
+			fmt.Println(centerText("\033[1;36m          GitHub Repo Downloader\033[0m", width)) // Cyan heading
+			// Green description
+			fmt.Println(centerText("\033[1;32mA CLI tool to download all or selected GitHub repositories.\033[0m", width)) // Green description
+			fmt.Println(centerText("\033[1;32mBuilt with Go, it automatically checks for dependencies\033[0m", width))     // Green description
+			fmt.Println(centerText("\033[1;32mand works across various command-line environments.\033[0m", width))         // Green description
+			// Creator and version in yellow
+			fmt.Println(centerText("\033[1;33mCreator: ABHINAND P N\033[0m", width))
+			fmt.Println(centerText("\033[1;33mGitHub: \033[4mhttps://github.com/abhinandpn\033[0m", width)) // Added link format
+			fmt.Println(centerText("\033[1;33mVersion: v01\033[0m", width))
+		},
 	}
 
-	// Display program info banner without lines
-	// Heading in cyan
-	fmt.Println(centerText("\033[1;36m          GitHub Repo Downloader\033[0m", width)) // Cyan heading
-	// Green description
-	fmt.Println(centerText("\033[1;32mA CLI tool to download all or selected GitHub repositories.\033[0m", width)) // Green description
-	fmt.Println(centerText("\033[1;32mBuilt with Go, it automatically checks for dependencies\033[0m", width)) // Green description
-	fmt.Println(centerText("\033[1;32mand works across various command-line environments.\033[0m", width)) // Green description
-	// Creator and version in yellow
-	fmt.Println(centerText("\033[1;33mCreator: ABHINAND P N\033[0m", width))
-	fmt.Println(centerText("\033[1;33mGitHub: \033[4mhttps://github.com/abhinandpn\033[0m", width)) // Added link format
-	fmt.Println(centerText("\033[1;33mVersion: v01.02\033[0m", width))
+	// Create a subcommand for downloading repositories
+	var downloadCmd = &cobra.Command{
+		Use:   "download [username]",
+		Short: "Download GitHub repositories",
+		Long:  `This command allows you to download all or selected repositories from GitHub.`,
+		Args:  cobra.ExactArgs(1),
+		Run: func(cmd *cobra.Command, args []string) {
+			username := args[0]
 
+			// Get terminal width
+			width, _, err := term.GetSize(int(os.Stdout.Fd()))
+			fmt.Println(width)
+			if err != nil {
+				width = 80 // Fallback to 80 if getting terminal width fails
+			}
+
+			// Display the repo download process here (you can add the logic for fetching repos, etc.)
+			fmt.Printf("\n\033[1;36mVerifying username: %s...\033[0m\n", username)
+			// Simulate fetching and listing the repos
+			// In practice, you would fetch the repos from GitHub's API.
+			repos := []string{"repo1", "repo2", "repo3"} // Simulated repos
+			fmt.Println("\nRepositories found:")
+			for i, repo := range repos {
+				fmt.Printf("\033[1;32m[%d] %s\033[0m\n", i+1, repo)
+			}
+			// Add download logic as needed
+			fmt.Println("\n\033[1;33mDownload option:\033[0m")
+			fmt.Println("1. Download all repositories")
+			fmt.Println("2. Download specific repositories by number (comma-separated)")
+		},
+	}
+
+	// Add the download command to the root command
+	rootCmd.AddCommand(downloadCmd)
+
+	// Execute the root command
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
 
 	// ✅ Step 1: Check required dependencies
 	if err := CheckDependencies(); err != nil {
@@ -184,6 +234,7 @@ func CheckDependencies() error {
 
 	return nil
 }
+
 func centerText(text string, width int) string {
 	// Calculate spaces to center the text
 	spaces := (width - len(text)) / 2
