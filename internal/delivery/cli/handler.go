@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/abhinandpn/githubRepoDownloder/internal/domain"
 	"github.com/abhinandpn/githubRepoDownloder/internal/usecase"
@@ -31,14 +32,12 @@ func (h *Handler) Start() {
 		Long: `GitHub Repo Downloader is a tool that allows users to download 
 	all or selected repositories from GitHub by providing a username.`,
 		Run: func(cmd *cobra.Command, args []string) {
-			// Get terminal width
 			width, _, err := term.GetSize(int(os.Stdout.Fd()))
 			if err != nil {
 				width = 80 // Fallback to 80 if getting terminal width fails
 			}
 
 			// Display program info banner
-			// Heading in cyan
 			fmt.Println(centerText("\033[1;36m          GitHub Repo Downloader\033[0m", width)) // Cyan heading
 			// Green description
 			fmt.Println(centerText("\033[1;32mA CLI tool to download all or selected GitHub repositories.\033[0m", width)) // Green description
@@ -59,10 +58,8 @@ func (h *Handler) Start() {
 		Args:  cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			username := args[0]
-
-			// Get terminal width
 			width, _, err := term.GetSize(int(os.Stdout.Fd()))
-			fmt.Println(width)
+			fmt.Print(width)
 			if err != nil {
 				width = 80 // Fallback to 80 if getting terminal width fails
 			}
@@ -80,6 +77,7 @@ func (h *Handler) Start() {
 			fmt.Println("\n\033[1;33mDownload option:\033[0m")
 			fmt.Println("1. Download all repositories")
 			fmt.Println("2. Download specific repositories by number (comma-separated)")
+			fmt.Println("3. Change GitHub username") // New option for changing username
 		},
 	}
 
@@ -91,7 +89,6 @@ func (h *Handler) Start() {
 		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
-
 	// ✅ Step 1: Check required dependencies
 	if err := CheckDependencies(); err != nil {
 		fmt.Println(err)
@@ -159,8 +156,10 @@ func (h *Handler) Start() {
 	fmt.Println("\nOptions:")
 	fmt.Println("1. Download all repositories")
 	fmt.Println("2. Download specific repositories by number (comma-separated)")
+	fmt.Println("3. Change GitHub username") // Option to change the username
 
-	fmt.Print("\nChoose option (1/2): ")
+	// Ask for user input
+	fmt.Print("\nChoose option (1/2/3): ")
 	choice, _ := reader.ReadString('\n')
 	choice = strings.TrimSpace(choice)
 
@@ -177,6 +176,15 @@ func (h *Handler) Start() {
 				selected = append(selected, num-1)
 			}
 		}
+	} else if choice == "3" { // Handle change of username
+		fmt.Print("Enter new GitHub username: ")
+		newUsername, _ := reader.ReadString('\n')
+		newUsername = strings.TrimSpace(newUsername) // Correct assignment
+
+		// Re-run the process with the new username
+		fmt.Printf("Changing username to: %s\n", newUsername) // Optional print
+		h.Start()                                             // Restart the process with the new username
+		return
 	} else {
 		for i := range repos {
 			selected = append(selected, i)
@@ -188,7 +196,20 @@ func (h *Handler) Start() {
 		reposToDownload = append(reposToDownload, repos[i])
 	}
 
+	// Add download progress animation
 	fmt.Println("⬇️  Downloading selected repositories...")
+
+	// Start the download progress animation in a goroutine
+	progress := make(chan bool)
+	go showDownloadProgress(progress)
+
+	// Simulate downloading repos
+	time.Sleep(5 * time.Second) // Simulate a delay for downloading
+
+	// Signal the progress animation to stop
+	progress <- true
+
+	// Perform the actual download
 	zipPath, err := h.usecase.DownloadRepos(username, reposToDownload)
 	if err != nil {
 		fmt.Println("❌ Error downloading:", err)
@@ -196,6 +217,27 @@ func (h *Handler) Start() {
 	}
 
 	fmt.Println("✅ Done! Downloaded ZIP at:", zipPath)
+}
+
+// showDownloadProgress simulates a spinner animation
+func showDownloadProgress(progress chan bool) {
+	// Define a set of spinner characters
+	spinner := []string{"|", "/", "-", "\\"}
+	i := 0
+
+	for {
+		select {
+		case <-progress:
+			// Stop the animation when progress is signaled to stop
+			fmt.Print("\r")
+			return
+		default:
+			// Print spinner
+			fmt.Printf("\rDownloading %s", spinner[i])
+			i = (i + 1) % len(spinner)
+			time.Sleep(100 * time.Millisecond)
+		}
+	}
 }
 
 func CheckDependencies() error {
