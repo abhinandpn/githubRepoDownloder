@@ -20,7 +20,7 @@ func NewGitHubRepo() domain.GitHubRepository {
 }
 
 func (g *githubRepoImpl) GetRepos(username string) ([]domain.GitHubRepo, error) {
-	resp, err := http.Get(fmt.Sprintf("https://api.github.com/users/%s/repos", username))
+	resp, err := http.Get(fmt.Sprintf("https://api.github.com/users/%s/repos?per_page=100", username))
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +89,9 @@ func zipDirectory(sourceDir, zipPath string) error {
 				return err
 			}
 			defer file.Close()
-			_, err = io.Copy(writerPart, file)
+			if _, err = io.Copy(writerPart, file); err != nil {
+				return err
+			}
 		}
 		return err
 	})
